@@ -1,0 +1,27 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="new-listener-plugin"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="new-listener-plugin-resources" name="new-listener-plugin Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="new-listener-plugin.css" location="/css/new-listener-plugin.css"/>
+        <resource type="download" name="new-listener-plugin.js" location="/js/new-listener-plugin.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>new-listener-plugin</context>
+    </web-resource>
+    <rest name="Base Rest Controller" i18n-name-key="base-rest-controller.name" key="base-rest-controller" path="/baserestcontroller" version="0.1">
+        <description key="base-rest-controller.description">The Base Rest Controller Plugin</description>
+    </rest>
+
+</atlassian-plugin>
