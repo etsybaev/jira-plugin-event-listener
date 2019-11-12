@@ -24,4 +24,11 @@
         <description key="base-rest-controller.description">The Base Rest Controller Plugin</description>
     </rest>
 
+    <customfield-type name="Money Custom Field" i18n-name-key="money-custom-field.name" key="money-custom-field"
+                      class="com.aval.jira.plugins.customfield.MoneyCustomField">
+        <description key="money-custom-field.description">The Money Custom Field Plugin</description>
+        <resource name="view" type="velocity" location="/templates/customfields/money-custom-field/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/money-custom-field/edit.vm"/>
+    </customfield-type>
+
 </atlassian-plugin>
