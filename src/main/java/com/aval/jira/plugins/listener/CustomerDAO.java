@@ -1,4 +1,4 @@
-package com.example.tutorial.plugins;
+package com.aval.jira.plugins.listener;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.example.tutorial.plugins.rest;
+package com.aval.jira.plugins.rest;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

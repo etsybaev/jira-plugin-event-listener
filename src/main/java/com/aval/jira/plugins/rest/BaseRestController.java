@@ -1,6 +1,4 @@
-package com.example.tutorial.plugins.rest;
-
-import com.atlassian.plugins.rest.common.security.AnonymousAllowed;
+package com.aval.jira.plugins.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
