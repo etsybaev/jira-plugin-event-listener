@@ -31,4 +31,15 @@
         <resource name="edit" type="velocity" location="/templates/customfields/money-custom-field/edit.vm"/>
     </customfield-type>
 
+
+    <customfield-type name="Read Only User CF" i18n-name-key="read-only-user-cf.name" key="read-only-user-cf"
+                      class="com.aval.jira.plugins.customfield.ReadOnlyUserCF">
+        <description key="read-only-user-cf.description">Read only custom field to store the name of the last edited user</description>
+        <resource name="view" type="velocity" location="/templates/customfields/jtricks/view-readonly-user.vm"/>
+        <resource name="column-view" type="velocity" location="/templates/customfields/jtricks/view-readonly-user.vm"/>
+        <resource name="xml" type="velocity" location="/templates/customfields/jtricks/view-readonly-user.vm"/>
+        <resource name="edit" type="velocity" location="/templates/customfields/jtricks/edit-readonly-user.vm"/>
+        <valid-searcher package="com.atlassian.jira.plugin.system.customfieldtypes" key="textsearcher"/>
+    </customfield-type>
+
 </atlassian-plugin>
