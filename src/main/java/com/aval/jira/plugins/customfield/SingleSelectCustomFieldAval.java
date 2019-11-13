@@ -6,7 +6,6 @@ import com.atlassian.jira.issue.customfields.option.Option;
 import com.atlassian.jira.issue.customfields.option.Options;
 import com.atlassian.jira.issue.fields.rest.json.beans.JiraBaseUrls;
 import com.atlassian.jira.issue.search.SearchContextImpl;
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@Scanned
 public class SingleSelectCustomFieldAval extends SelectCFType {
 
     private static final Logger log = LoggerFactory.getLogger(SingleSelectCustomFieldAval.class);

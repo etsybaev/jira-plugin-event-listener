@@ -8,14 +8,12 @@ import com.atlassian.jira.issue.fields.CustomField;
 import com.atlassian.jira.issue.fields.TextFieldCharacterLengthValidator;
 import com.atlassian.jira.issue.fields.layout.field.FieldLayoutItem;
 import com.atlassian.jira.security.JiraAuthenticationContext;
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-@Scanned
 public class ReadOnlyUserCF extends GenericTextCFType {
 	
 	private final JiraAuthenticationContext jiraAuthenticationContext;

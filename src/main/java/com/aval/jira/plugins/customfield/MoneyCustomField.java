@@ -5,12 +5,11 @@ import com.atlassian.jira.issue.customfields.impl.FieldValidationException;
 import com.atlassian.jira.issue.customfields.manager.GenericConfigManager;
 import com.atlassian.jira.issue.customfields.persistence.CustomFieldValuePersister;
 import com.atlassian.jira.issue.customfields.persistence.PersistenceFieldType;
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.JiraImport;
 
 import java.math.BigDecimal;
 
-@Scanned
+
 public class MoneyCustomField extends AbstractSingleFieldType<BigDecimal> {
 
     public MoneyCustomField(

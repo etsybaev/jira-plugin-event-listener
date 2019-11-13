@@ -17,6 +17,6 @@ public class BaseRestController {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
     public Response getMessage()
     {
-       return Response.ok(new BaseRestControllerModel("Hello World")).build();
+       return Response.ok(new BaseRestControllerModel("Hello World from rest controller")).build();
     }
 }
