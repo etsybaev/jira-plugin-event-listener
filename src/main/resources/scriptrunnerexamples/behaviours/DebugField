@@ -1,0 +1,48 @@
+import groovyx.net.http.HTTPBuilder
+import static groovyx.net.http.ContentType.*
+import groovyx.net.http.ContentType
+import static groovyx.net.http.Method.*
+import groovy.json.JsonSlurper
+import net.sf.json.groovy.JsonSlurper
+import groovy.json.JsonOutput
+
+//////////////////////////////////////////////////////////////////
+//https://community.atlassian.com/t5/Jira-questions/Can-you-update-Scriptrunner-Script-Variables-automatically/qaq-p/1056325
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+def getToken(user, pw) {
+
+  def http = new HTTPBuilder(getBaseUrl() + '/rest/auth/1/session')
+  http.request(POST) {
+   requestContentType = ContentType.JSON
+   body = [username: user, password: pw]
+
+   response.success = { resp, JSON ->
+
+   token = JSON.get("session").get("value")
+   return token
+  }
+
+  response.failure = { resp ->
+   return "Request failed with status ${resp.status}"
+
+   }
+  }
+}
+
+def get = new URL(getBaseUrl() + '/rest/scriptrunner/latest/custom/doSomething').openConnection();
+get.setRequestProperty( "Cookie", "JSESSIONID=" + getToken("admin", "admin"))
+def getRC = get.getResponseCode();
+
+//if(getRC.equals(200)) {
+    def jsonString = get.getInputStream().getText();
+//}
+
+
+def debugField = getFieldByName('DebugField')
+debugField.setFormValue(jsonString)
+
+

@@ -1,0 +1,49 @@
+import com.onresolve.scriptrunner.runner.rest.common.CustomEndpointDelegate
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import groovy.transform.BaseScript
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
+
+import javax.ws.rs.core.MultivaluedMap
+import javax.ws.rs.core.Response
+
+@BaseScript CustomEndpointDelegate delegate
+
+githubRepoQuery(httpMethod: "GET") { MultivaluedMap queryParams ->
+
+    def query = queryParams.getFirst("query") as String
+
+    def rt = [:]
+    if (query) {
+        def httpBuilder = new HTTPBuilder("https://api.github.com")
+        def repos = httpBuilder.request(Method.GET, ContentType.JSON) {
+            uri.path = "/search/repositories"
+            uri.query = [q: "$query in:name", sort: "stars", order: "desc"]
+            headers."User-Agent" = "My JIRA"
+
+            response.failure = { resp, reader ->
+                log.warn("Failed to query GitHub API: " + reader.text)
+                return Response.serverError().build()
+            }
+        }
+
+        rt = [
+            items : repos["items"].collect { Map repo ->
+                def repoName = repo."full_name"
+                [
+                    value: repoName,
+                    html : repoName.replaceAll(/(?i)$query/) { "<b>${it}</b>" }
+                        + "<span style=\"float: right\">${repo['stargazers_count']} &#11088;</span>",
+                    label: repoName,
+                    icon : repo.owner?."avatar_url",
+                ]
+            },
+            total : repos["total_count"],
+            footer: "Choose repo... (${repos["items"].size()} of ${repos["total_count"]} shown...)"
+        ]
+    }
+
+    return Response.ok(new JsonBuilder(rt).toString()).build()
+}

@@ -1,0 +1,10 @@
+getFieldByName("GitHub public repos").convertToMultiSelect([
+    ajaxOptions: [
+        url : getBaseUrl() + "/rest/scriptrunner/latest/custom/githubRepoQuery?query=etsybaev",
+        //url : "212.90.45.55:8080/rest/scriptrunner/latest/custom/githubRepoQuery?query=etsybaev",
+        query: true, // keep going back to the sever for each keystroke
+        minQueryLength: 0,
+        keyInputPeriod: 500,
+        formatResponse: "general",
+    ]
+])

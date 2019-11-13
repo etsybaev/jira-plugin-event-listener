@@ -1,0 +1,50 @@
+import com.atlassian.jira.component.ComponentAccessor
+import java.net.URL
+import groovy.json.JsonSlurper
+
+def customFieldManager = ComponentAccessor.getCustomFieldManager()
+def optionsManager = ComponentAccessor.getOptionsManager()
+
+def favouriteOptionField = getFieldByName("List of Aval Customers")
+
+def customField = customFieldManager.getCustomFieldObject(favouriteOptionField.getFieldId())
+def config = customField.getRelevantConfig(getIssueContext())
+def options = optionsManager.getOptions(config)
+
+
+def get = new URL(getBaseUrl() + '/rest/scriptrunner/latest/custom/doSomething').openConnection();
+//get.setRequestProperty("Authorization", "Basic YWRtaW46YWRtaW4=")
+//get.setRequestProperty("Authorization", "Basic " + "admin:admin".bytes.encodeBase64().toString())
+get.setRequestProperty( "Authorization", "Basic " + "admin:admin".bytes.encodeBase64().toString())
+def getRC = get.getResponseCode();
+
+//if(getRC.equals(200)) {
+    def jsonString = get.getInputStream().getText();
+//}
+
+
+//Parse json
+JsonSlurper slurper = new JsonSlurper()
+Map parsedJson = slurper.parseText(jsonString)
+
+List idValues = parsedJson.get("actions")
+
+//if mdm is down, then show all values
+if(idValues.size() > 0){
+ //Prepare items for drop-down menu based in response from REST service
+ def optionMap = options.findAll{
+   it.value in idValues
+ }.collectEntries{
+     [
+         (it.optionId.toString()) : it.value
+     ]
+ }
+
+ favouriteOptionField.setFieldOptions(optionMap)
+
+}
+
+
+
+
+
