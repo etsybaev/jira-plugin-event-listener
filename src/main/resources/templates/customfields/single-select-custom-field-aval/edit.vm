@@ -1,0 +1,17 @@
+#* @vtlvariable name="results" type="java.util.Map" *#
+#* @vtlvariable name="selectedId" type="java.lang.String" *#
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+<select name="$customField.id" id="$customField.id" >
+    <option value="-1">Not selected</option>
+    #foreach ($mapEntry in $results.entrySet())
+        #if ( $selectedId == $mapEntry.key )
+            <option selected="selected" value="$mapEntry.key">$mapEntry.value</option>
+        #else
+            <option value="$mapEntry.key">$mapEntry.value</option>
+        #end
+    #end
+</select>
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)
+

@@ -34,6 +34,14 @@
     <resource name="edit" type="velocity" location="/templates/customfields/jtricks/edit-readonly-user.vm"/>
     <valid-searcher package="com.atlassian.jira.plugin.system.customfieldtypes" key="textsearcher"/>
   </customfield-type>
+  <customfield-type name="Single Select Custom Field Aval" i18n-name-key="single-select-custom-field-aval.name" key="single-select-custom-field-aval"
+                    class="com.aval.jira.plugins.customfield.SingleSelectCustomFieldAval">
+    <description key="money-custom-field.description">The Money Custom Field Plugin</description>
+    <resource name="view" type="velocity" location="/templates/customfields/single-select-custom-field-aval/view.vm"/>
+    <resource name="edit" type="velocity" location="/templates/customfields/single-select-custom-field-aval/edit.vm"/>
+    <resource name="column-view" type="velocity" location="/templates/customfields/single-select-custom-field-aval/view.vm"/>
+    <resource name="xml" type="velocity" location="/templates/customfields/single-select-custom-field-aval/view.vm"/>
+  </customfield-type>
   <servlet name="Hello World Servlet" i18n-name-key="hello-world-servlet.name" key="hello-world-servlet" class="com.aval.jira.plugins.servlet.HelloWorldServlet">
     <description key="hello-world-servlet.description">The Hello World Servlet Plugin</description>
     <url-pattern>/helloworldservlet</url-pattern>
