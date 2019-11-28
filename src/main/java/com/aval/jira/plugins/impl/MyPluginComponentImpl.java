@@ -7,6 +7,7 @@ import com.aval.jira.plugins.api.MyPluginComponent;
 import com.aval.jira.plugins.listener.CustomerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.atlassian.jira.config.util.JiraHome;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,14 +19,17 @@ public class MyPluginComponentImpl implements MyPluginComponent
 {
     @ComponentImport
     private final ApplicationProperties applicationProperties;
+    @ComponentImport
+    private JiraHome jiraHome; //this may be used as workaround to save scripts to jirajome'scripts folder and then us it in script runner behaviours
 
     @Autowired
     private CustomerDAO customerDAO;
 
     @Inject
-    public MyPluginComponentImpl(final ApplicationProperties applicationProperties)
+    public MyPluginComponentImpl(final ApplicationProperties applicationProperties, JiraHome jiraHome)
     {
         this.applicationProperties = applicationProperties;
+        this.jiraHome = jiraHome;
     }
 
     public String getName()
@@ -47,4 +51,6 @@ public class MyPluginComponentImpl implements MyPluginComponent
     public CustomerDAO getCustomerDAO() {
         return customerDAO;
     }
+
+    public JiraHome getJiraHome(){return jiraHome;}
 }
