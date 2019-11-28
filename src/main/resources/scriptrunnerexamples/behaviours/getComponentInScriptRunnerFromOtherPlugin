@@ -1,0 +1,13 @@
+import com.atlassian.jira.component.ComponentAccessor
+import com.onresolve.scriptrunner.runner.customisers.PluginModule
+import com.onresolve.scriptrunner.runner.customisers.WithPlugin
+import com.aval.jira.plugins.api.MyPluginComponent
+
+
+@WithPlugin("com.aval.jira.plugins.new-listener-plugin")
+
+
+def myPluginComponent = ComponentAccessor.getOSGiComponentInstanceOfType(MyPluginComponent)
+
+def field = getFieldByName("EugDebTF")
+field.setFormValue("SSSS" + myPluginComponent.getCustomerDao().get(101L).getFirstName())

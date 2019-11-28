@@ -7,5 +7,7 @@
         http://www.atlassian.com/schema/atlassian-scanner/2
         http://www.atlassian.com/schema/atlassian-scanner/2/atlassian-scanner.xsd">
 
-    <atlassian-scanner:scan-indexes/>
+    <!--<atlassian-scanner:scan-indexes/>-->
+<!--    do we really need this option with autowire=true???-->
+    <atlassian-scanner:scan-indexes autowire="constructor"/>
 </beans>

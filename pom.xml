@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aval.jira.plugins</groupId>
     <artifactId>new-listener-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <organization>
         <name>Atlassian Tutorials, Inc</name>
         <url>http://tutorials.example.com/</url>
@@ -137,7 +137,8 @@
                     <instructions>
                         <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
                         <!-- Add package to export here -->
-                        <Export-Package>com.aval.jira.plugins.api,</Export-Package>
+                        <Export-Package>com.aval.*,</Export-Package>
+                        <!--<Export-Package>com.aval.jira.plugins.api,</Export-Package>-->
                         <!-- Add package import here -->
                         <Import-Package>org.springframework.osgi.*;resolution:="optional", org.eclipse.gemini.blueprint.*;resolution:="optional", *</Import-Package>
                         <!-- Ensure plugin is spring powered -->
@@ -171,7 +172,7 @@
     </build>
     <properties>
         <jira.version>8.2.0</jira.version>
-        <amps.version>6.3.21</amps.version>
+        <amps.version>6.3.22-7065260</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
         <atlassian.spring.scanner.version>2.2.0</atlassian.spring.scanner.version>
         <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
